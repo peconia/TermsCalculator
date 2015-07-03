@@ -24,5 +24,22 @@ namespace TermsCalculator
         {
             InitializeComponent();
         }
+
+        private void calculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello.");
+        }
+
+        private void discountRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            servOrDiscTextBlock.Text = "Discount %";
+        }
+
+        private void scRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+           // if (sender == null) return;
+            servOrDiscTextBlock.Text = "Service Charge %";
+            
+        }
     }
 }
