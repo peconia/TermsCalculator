@@ -16,11 +16,11 @@
         <RadioButton x:Name="discountRadioButton" Content="Discount" HorizontalAlignment="Left" Margin="170,136,0,0" VerticalAlignment="Top" Height="15" Width="66" Checked="discountRadioButton_Checked"/>
         <TextBlock x:Name="servOrDiscTextBlock" HorizontalAlignment="Left" Margin="46,166,0,0" TextWrapping="Wrap" Text="Service Charge %" VerticalAlignment="Top" Height="16" Width="92"/>
         <TextBox x:Name="termsPercentage" HorizontalAlignment="Left" Height="23" Margin="170,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="calculateVATCheckBox" Content="Include VAT calculations" HorizontalAlignment="Left" Margin="27,260,0,0" VerticalAlignment="Top" Height="15" Width="148"/>
+        <CheckBox x:Name="calculateVATCheckBox" Content="Include VAT calculations" HorizontalAlignment="Left" Margin="27,260,0,0" VerticalAlignment="Top" Height="15" Width="148" Click="calculateVATCheckBox_Click"/>
         <CheckBox x:Name="termsIncludedCheckBox" Content="Terms already included in amount" HorizontalAlignment="Left" Margin="46,206,0,0" VerticalAlignment="Top" ToolTip="Check this if the amount you entered already includes the service charge or discount" Height="15" Width="200"/>
-        <TextBlock HorizontalAlignment="Left" Margin="46,302,0,0" TextWrapping="Wrap" Text="VAT %" VerticalAlignment="Top"/>
-        <TextBox x:Name="vatPercentage" HorizontalAlignment="Left" Height="23" Margin="101,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61"/>
-        <CheckBox x:Name="vatAlredyIncludedCheckBox" Content="VAT already included in amount" HorizontalAlignment="Left" Margin="46,342,0,0" VerticalAlignment="Top" ToolTip="Check this if the amount you entered already includes the VAT" Height="15" Width="200"/>
+        <TextBlock x:Name="vatPercentageTextBlock" HorizontalAlignment="Left" Margin="46,302,0,0" TextWrapping="Wrap" Text="VAT %" VerticalAlignment="Top" IsEnabled="False" Foreground="Gray"/>
+        <TextBox x:Name="vatPercentage" HorizontalAlignment="Left" Height="23" Margin="101,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" IsEnabled="False"/>
+        <CheckBox x:Name="vatAlredyIncludedCheckBox" Content="VAT already included in amount" HorizontalAlignment="Left" Margin="46,342,0,0" VerticalAlignment="Top" Foreground="Gray" ToolTip="Check this if the amount you entered already includes the VAT" Height="15" Width="200" IsEnabled="False"/>
 
     </Grid>
 </Window>

@@ -41,5 +41,25 @@ namespace TermsCalculator
             servOrDiscTextBlock.Text = "Service Charge %";
             
         }
+
+        private void calculateVATCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (calculateVATCheckBox.IsChecked == true)
+            {
+                vatPercentage.IsEnabled = true;
+                vatAlredyIncludedCheckBox.IsEnabled = true;
+                vatAlredyIncludedCheckBox.Foreground = Brushes.Black;
+                vatPercentageTextBlock.IsEnabled = true;
+                vatPercentageTextBlock.Foreground = Brushes.Black;
+            }
+            else
+            {
+                vatPercentage.IsEnabled = false;
+                vatAlredyIncludedCheckBox.IsEnabled = false;
+                vatAlredyIncludedCheckBox.Foreground = Brushes.Gray;
+                vatPercentageTextBlock.IsEnabled = false;
+                vatPercentageTextBlock.Foreground = Brushes.Gray;
+            }
+        }
     }
 }
