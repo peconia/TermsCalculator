@@ -146,11 +146,11 @@ namespace TermsCalculator
 
             totalAmount = amount + termsAmount + vatAmount;
 
-            MessageBox.Show("The amount with no Terms is: " + amount + "\n"
-                + "The terms amount is: " + termsAmount + "\n"
-                + "The amount including terms is: " + (amount + termsAmount) + "\n"
-                + "The VAT amount is: " + vatAmount + "\n"
-                + "the total is: " + totalAmount);
+            MessageBox.Show("The amount with no Terms is: " + Math.Round(amount, 2) + "\n"
+                + "The terms amount is: " + Math.Round(termsAmount, 2) + "\n"
+                + "The amount including terms is: " + Math.Round((amount + termsAmount), 2) + "\n"
+                + "The VAT amount is: " + Math.Round(vatAmount, 2) + "\n"
+                + "the total is: " + Math.Round(totalAmount, 2));
         }
 
 
