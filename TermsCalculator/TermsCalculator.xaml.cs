@@ -44,7 +44,7 @@ namespace TermsCalculator
                 
             }
 
-            // ensure the terms have been entered correctly
+            // ensure the terms have been entered correctly and calculate percentage
             if (!String.IsNullOrEmpty(termsPercentage.Text))
             {
                 termsPercentageDecimal = Decimal.Parse(termsPercentage.Text, NumberStyles.AllowDecimalPoint);
@@ -63,20 +63,30 @@ namespace TermsCalculator
                 return;
             }
 
-            // calculate the amount and terms
-            if (termsIncludedCheckBox.IsChecked == true)
+            // Calculate values for all cases
+
+            // If VAT is not included
+            if (calculateVATCheckBox.IsChecked == false)
             {
-                if (discountRadioButton.IsChecked == true)
+                vatAmount = 0;
+         
+
+                // terms not already included
+                if (termsIncludedCheckBox.IsChecked == false)
                 {
-                    amount /= termsPercentageDecimal;
-                }           
+                    termsAmount = amount * termsPercentageDecimal - amount;
+                }
+                // terms already included in amount
+                else
+                {
+                    amount = amount / termsPercentageDecimal;
+                    termsAmount = amount * termsPercentageDecimal - amount;
+                }
             }
-
-            termsAmount = amount * termsPercentageDecimal - amount;
-
-            // check if VAT is to be included or not
-            if (calculateVATCheckBox.IsChecked == true)
+            else
             {
+            // VAT is to be calculated
+                // check VAT has been entered correctly
                 if (String.IsNullOrEmpty(vatPercentage.Text))
                 {
                     MessageBox.Show("Please enter the VAT %");
@@ -85,13 +95,54 @@ namespace TermsCalculator
                 else
                 {
                     vatPercentageDecimal = (Decimal.Parse(vatPercentage.Text) + 100) / 100;
-                    vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
+                }
+            
+
+                // VAT already included in amount
+                if (vatAlredyIncludedCheckBox.IsChecked == true)
+                {
+                    // terms not already included
+                    if (termsIncludedCheckBox.IsChecked == false)
+                    {
+                        // remove VAT first
+                        amount = amount / vatPercentageDecimal;
+
+                        termsAmount = amount * termsPercentageDecimal - amount;
+                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
+                    }
+                    // terms already included in amount
+                    else
+                    {
+                        // remove VAT first
+                        amount = amount / vatPercentageDecimal;
+                        // then remove terms
+                        amount = amount / termsPercentageDecimal;
+
+                        termsAmount = amount * termsPercentageDecimal - amount;
+                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
+                    }
+                }
+                else
+                {
+                    // VAT not already included
+                    if (termsIncludedCheckBox.IsChecked == false)
+                    {
+                        termsAmount = amount * termsPercentageDecimal - amount;
+                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
+                    }
+                    // terms already included in amount
+                    else
+                    {
+                        //  remove terms
+                        amount = amount / termsPercentageDecimal;
+
+                        termsAmount = amount * termsPercentageDecimal - amount;
+                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
+                    }
                 }
             }
-            else
-            {
-                vatAmount = 0;
-            }
+                
+          
 
             totalAmount = amount + termsAmount + vatAmount;
 
