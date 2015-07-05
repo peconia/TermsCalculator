@@ -30,7 +30,76 @@ namespace TermsCalculator
         private void calculateButton_Click(object sender, RoutedEventArgs e)
         {
 
-            //MessageBox.Show("Hello.");
+            decimal amount, vatAmount, vatPercentageDecimal, termsPercentageDecimal, termsAmount, totalAmount, result;
+            
+           // ensure the amount entered is amount double
+            if (!Decimal.TryParse(amountBox.Text, out result))
+            {
+                MessageBox.Show("Please enter an amount to start calculating!");
+                return;
+            }
+            else
+            {
+                amount = Decimal.Parse(amountBox.Text, NumberStyles.AllowDecimalPoint);
+                
+            }
+
+            // ensure the terms have been entered correctly
+            if (!String.IsNullOrEmpty(termsPercentage.Text))
+            {
+                termsPercentageDecimal = Decimal.Parse(termsPercentage.Text, NumberStyles.AllowDecimalPoint);
+                if (discountRadioButton.IsChecked == true)
+                {
+                    termsPercentageDecimal = (100 - termsPercentageDecimal) / 100;
+                }
+                else
+                {
+                    termsPercentageDecimal = (100 + termsPercentageDecimal) / 100;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter the service carge or discount %");
+                return;
+            }
+
+            // calculate the amount and terms
+            if (termsIncludedCheckBox.IsChecked == true)
+            {
+                if (discountRadioButton.IsChecked == true)
+                {
+                    amount /= termsPercentageDecimal;
+                }           
+            }
+
+            termsAmount = amount * termsPercentageDecimal - amount;
+
+            // check if VAT is to be included or not
+            if (calculateVATCheckBox.IsChecked == true)
+            {
+                if (String.IsNullOrEmpty(vatPercentage.Text))
+                {
+                    MessageBox.Show("Please enter the VAT %");
+                    return;
+                }
+                else
+                {
+                    vatPercentageDecimal = (Decimal.Parse(vatPercentage.Text) + 100) / 100;
+                    vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
+                }
+            }
+            else
+            {
+                vatAmount = 0;
+            }
+
+            totalAmount = amount + termsAmount + vatAmount;
+
+            MessageBox.Show("The amount with no Terms is: " + amount + "\n"
+                + "The terms amount is: " + termsAmount + "\n"
+                + "The amount including terms is: " + (amount + termsAmount) + "\n"
+                + "The VAT amount is: " + vatAmount + "\n"
+                + "the total is: " + totalAmount);
         }
 
 
@@ -69,8 +138,8 @@ namespace TermsCalculator
 
         private void amountBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            double result;
-            if (!Double.TryParse(amountBox.Text, out result)) {
+            decimal result;
+            if (!Decimal.TryParse(amountBox.Text, out result)) {
                 MessageBox.Show("Please enter number as amount!");
             }
         }
@@ -84,21 +153,21 @@ namespace TermsCalculator
 
         private void checkPercentage(string entered_text)
         {
-            double result;
-            if (!Double.TryParse(entered_text, out result))
+            decimal result;
+            if (!Decimal.TryParse(entered_text, out result))
             {
                 MessageBox.Show("Please enter a percentage between 0 and 100!");
                 return;
 
             }
 
-            double enteredAmount = Double.Parse(entered_text, NumberStyles.AllowDecimalPoint);
+            decimal enteredAmount = Decimal.Parse(entered_text, NumberStyles.AllowDecimalPoint);
 
             if (enteredAmount <= 0)
             {
                 MessageBox.Show("The percentage must be more than 0!");
             }
-            else if (enteredAmount > 100.0)
+            else if (enteredAmount > 100)
             {
                 MessageBox.Show("The percentage must be less than 100!");
             }
