@@ -27,6 +27,7 @@ namespace TermsCalculator
             totalWithTermsTextBox.Text = (calculator.Amount + calculator.TermsAmount).ToString();
             vatAmountTextBox.Text = calculator.VatAmount.ToString();
             totalTextBox.Text = calculator.TotalAmount.ToString();
+            
             if (calculator.IsDiscountChecked == true)
             {
                 TermsAmountTextBlock.Text = "Discount Amount:";
@@ -35,6 +36,17 @@ namespace TermsCalculator
             {
                 TermsAmountTextBlock.Text = "Service Charge Amount:";
             }
+
+            if (calculator.VatAmount == 0)
+            {
+                vatAmountTextBlock.Visibility = Visibility.Hidden;
+                vatAmountTextBox.Visibility = Visibility.Hidden;
+                vatTotalTextBlock.Visibility = Visibility.Hidden;
+                totalTextBox.Visibility = Visibility.Hidden;
+
+            }
+
+            
             
         }
 
