@@ -27,6 +27,14 @@ namespace TermsCalculator
             totalWithTermsTextBox.Text = (calculator.Amount + calculator.TermsAmount).ToString();
             vatAmountTextBox.Text = calculator.VatAmount.ToString();
             totalTextBox.Text = calculator.TotalAmount.ToString();
+            if (calculator.IsDiscountChecked == true)
+            {
+                TermsAmountTextBlock.Text = "Discount Amount:";
+            }
+            else
+            {
+                TermsAmountTextBlock.Text = "Service Charge Amount:";
+            }
             
         }
 
