@@ -45,7 +45,7 @@ namespace TermsCalculator
             calculator.updateFigures();
             ResultWindow resultWindow = new ResultWindow(calculator);
             resultWindow.Show();
-            this.Close();
+            //this.Close();
 
         }
 

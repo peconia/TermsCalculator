@@ -38,6 +38,14 @@ namespace TermsCalculator
             
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //MainWindow termsCalculator = new MainWindow();
+            //termsCalculator.Show();
+            this.Close();
+
+        }
+
         
 
 
