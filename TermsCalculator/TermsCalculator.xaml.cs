@@ -29,130 +29,24 @@ namespace TermsCalculator
 
         private void calculateButton_Click(object sender, RoutedEventArgs e)
         {
-
-            decimal amount, vatAmount, vatPercentageDecimal, termsPercentageDecimal, termsAmount, totalAmount, result;
-            
-           // ensure the amount entered is amount double
-            if (!Decimal.TryParse(amountBox.Text, out result))
+            Calculator calculator = new Calculator();
+            bool useDiscount = (discountRadioButton.IsChecked == true);
+            bool termsAreIncluded = (termsIncludedCheckBox.IsChecked == true);
+            bool includeVATCalculations = (calculateVATCheckBox.IsChecked == true);
+            bool vatAlreadyIncluded = (vatAlredyIncludedCheckBox.IsChecked == true);
+            if (includeVATCalculations)
             {
-                MessageBox.Show("Please enter an amount to start calculating!");
-                return;
-            }
-            else
+                calculator.updateCalculator(amountBox.Text, termsPercentage.Text, vatPercentage.Text, useDiscount, termsAreIncluded, vatAlreadyIncluded);
+            } 
+            else 
             {
-                amount = Decimal.Parse(amountBox.Text, NumberStyles.AllowDecimalPoint);
-                
+                calculator.updateCalculator(amountBox.Text, termsPercentage.Text, useDiscount, termsAreIncluded );
             }
-
-            // ensure the terms have been entered correctly and calculate percentage
-            if (!String.IsNullOrEmpty(termsPercentage.Text))
-            {
-                termsPercentageDecimal = Decimal.Parse(termsPercentage.Text, NumberStyles.AllowDecimalPoint);
-                if (discountRadioButton.IsChecked == true)
-                {
-                    termsPercentageDecimal = (100 - termsPercentageDecimal) / 100;
-                }
-                else
-                {
-                    termsPercentageDecimal = (100 + termsPercentageDecimal) / 100;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please enter the service carge or discount %");
-                return;
-            }
-
-            // Calculate values for all cases
-
-            // If VAT is not included
-            if (calculateVATCheckBox.IsChecked == false)
-            {
-                vatAmount = 0;
-         
-
-                // terms not already included
-                if (termsIncludedCheckBox.IsChecked == false)
-                {
-                    termsAmount = amount * termsPercentageDecimal - amount;
-                }
-                // terms already included in amount
-                else
-                {
-                    amount = amount / termsPercentageDecimal;
-                    termsAmount = amount * termsPercentageDecimal - amount;
-                }
-            }
-            else
-            {
-            // VAT is to be calculated
-                // check VAT has been entered correctly
-                if (String.IsNullOrEmpty(vatPercentage.Text))
-                {
-                    MessageBox.Show("Please enter the VAT %");
-                    return;
-                }
-                else
-                {
-                    vatPercentageDecimal = (Decimal.Parse(vatPercentage.Text) + 100) / 100;
-                }
-            
-
-                // VAT already included in amount
-                if (vatAlredyIncludedCheckBox.IsChecked == true)
-                {
-                    // terms not already included
-                    if (termsIncludedCheckBox.IsChecked == false)
-                    {
-                        // remove VAT first
-                        amount = amount / vatPercentageDecimal;
-
-                        termsAmount = amount * termsPercentageDecimal - amount;
-                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
-                    }
-                    // terms already included in amount
-                    else
-                    {
-                        // remove VAT first
-                        amount = amount / vatPercentageDecimal;
-                        // then remove terms
-                        amount = amount / termsPercentageDecimal;
-
-                        termsAmount = amount * termsPercentageDecimal - amount;
-                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
-                    }
-                }
-                else
-                {
-                    // VAT not already included
-                    if (termsIncludedCheckBox.IsChecked == false)
-                    {
-                        termsAmount = amount * termsPercentageDecimal - amount;
-                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
-                    }
-                    // terms already included in amount
-                    else
-                    {
-                        //  remove terms
-                        amount = amount / termsPercentageDecimal;
-
-                        termsAmount = amount * termsPercentageDecimal - amount;
-                        vatAmount = (amount + termsAmount) * vatPercentageDecimal - (amount + termsAmount);
-                    }
-                }
-            }
-                
-          
-
-            totalAmount = amount + termsAmount + vatAmount;
-
-            MessageBox.Show("The amount with no Terms is: " + Math.Round(amount, 2) + "\n"
-                + "The terms amount is: " + Math.Round(termsAmount, 2) + "\n"
-                + "The amount including terms is: " + Math.Round((amount + termsAmount), 2) + "\n"
-                + "The VAT amount is: " + Math.Round(vatAmount, 2) + "\n"
-                + "the total is: " + Math.Round(totalAmount, 2));
+            calculator.updateFigures();
         }
 
+
+        
 
         private void discountRadioButton_Checked(object sender, RoutedEventArgs e)
         {
