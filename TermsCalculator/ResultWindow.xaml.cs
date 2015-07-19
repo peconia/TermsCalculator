@@ -29,12 +29,12 @@ namespace TermsCalculator
             totalTextBox.Text = calculator.TotalAmount.ToString();
             
             if (calculator.IsDiscountChecked == true)
-            {
-                TermsAmountTextBlock.Text = "Discount Amount:";
+            {             
+                TermsAmountTextBlock.Text = String.Format("Discount Amount (-{0}%):", ((1 - calculator.TermsPercentageDecimal) * 100).ToString());
             }
             else
             {
-                TermsAmountTextBlock.Text = "Service Charge Amount:";
+                TermsAmountTextBlock.Text = String.Format("Service charge amount ({0}%):", ((calculator.TermsPercentageDecimal - 1) * 100).ToString());
             }
 
             if (calculator.VatAmount == 0)
