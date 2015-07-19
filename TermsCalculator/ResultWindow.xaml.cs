@@ -19,9 +19,19 @@ namespace TermsCalculator
     /// </summary>
     public partial class ResultWindow : Window
     {
-        public ResultWindow()
+        public ResultWindow(Calculator calculator)
         {
             InitializeComponent();
+            amountWithoutTerms.Text = calculator.Amount.ToString();
+            TermsAmountTextBox.Text = calculator.TermsAmount.ToString();
+            totalWithTermsTextBox.Text = (calculator.Amount + calculator.TermsAmount).ToString();
+            vatAmountTextBox.Text = calculator.VatAmount.ToString();
+            totalTextBox.Text = calculator.TotalAmount.ToString();
+            
         }
+
+        
+
+
     }
 }

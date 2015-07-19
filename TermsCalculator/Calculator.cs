@@ -8,10 +8,10 @@ using System.Windows;
 
 namespace TermsCalculator
 {
-    class Calculator
+    public class Calculator
     {
 
-        private decimal amount, vatAmount, vatPercentageDecimal, termsPercentageDecimal, termsAmount, totalAmount, result;
+        public decimal amount, vatAmount, vatPercentageDecimal, termsPercentageDecimal, termsAmount, totalAmount, result;
 
         public decimal TotalAmount
         {
@@ -137,7 +137,8 @@ namespace TermsCalculator
             // Calculate values for all cases
 
             // If VAT is not included
-            if (this.IncludeVATCalculation == false)
+            if (this.vatText.Length < 1)
+                
             {
                 this.VatAmount = 0;
 
@@ -212,13 +213,13 @@ namespace TermsCalculator
                 }
             }
             this.TotalAmount = this.Amount + this.TermsAmount + this.VatAmount;
-            totalAmount = amount + termsAmount + vatAmount;
 
-            MessageBox.Show("The amount with no Terms is: " + Math.Round(amount, 2) + "\n"
-                + "The terms amount is: " + Math.Round(termsAmount, 2) + "\n"
-                + "The amount including terms is: " + Math.Round((amount + termsAmount), 2) + "\n"
-                + "The VAT amount is: " + Math.Round(vatAmount, 2) + "\n"
-                + "the total is: " + Math.Round(totalAmount, 2));
+
+            //MessageBox.Show("The amount with no Terms is: " + Math.Round(amount, 2) + "\n"
+            //    + "The terms amount is: " + Math.Round(termsAmount, 2) + "\n"
+            //    + "The amount including terms is: " + Math.Round((amount + termsAmount), 2) + "\n"
+            //    + "The VAT amount is: " + Math.Round(vatAmount, 2) + "\n"
+            //    + "the total is: " + Math.Round(totalAmount, 2));
 
             
         }
@@ -230,85 +231,7 @@ namespace TermsCalculator
             }
 
 
-                //private void discountRadioButton_Checked(object sender, RoutedEventArgs e)
-                //{
-                //    servOrDiscTextBlock.Text = "Discount %";
-                //}
 
-                //private void scRadioButton_Click(object sender, RoutedEventArgs e)
-                //{
-                //    servOrDiscTextBlock.Text = "Service Charge %";
-
-                //    }
-
-                //    private void calculateVATCheckBox_Click(object sender, RoutedEventArgs e)
-                //    {
-                //        // enable all the VAT related fields if checkbox is checked
-                //        if (calculateVATCheckBox.IsChecked == true)
-                //        {
-                //            vatPercentage.IsEnabled = true;
-                //            vatAlredyIncludedCheckBox.IsEnabled = true;
-                //            vatAlredyIncludedCheckBox.Foreground = Brushes.Black;
-                //            vatPercentageTextBlock.IsEnabled = true;
-                //            vatPercentageTextBlock.Foreground = Brushes.Black;
-                //        }
-                //        else
-                //        {
-                //            vatPercentage.IsEnabled = false;
-                //            vatAlredyIncludedCheckBox.IsEnabled = false;
-                //            vatAlredyIncludedCheckBox.Foreground = Brushes.Gray;
-                //            vatPercentageTextBlock.IsEnabled = false;
-                //            vatPercentageTextBlock.Foreground = Brushes.Gray;
-                //        }
-                //    }
-
-
-                //    private void amountBox_LostFocus(object sender, RoutedEventArgs e)
-                //    {
-                //        decimal result;
-                //        if (!Decimal.TryParse(amountBox.Text, out result)) {
-                //            MessageBox.Show("Please enter number as amount!");
-                //        }
-                //    }
-
-                //    private void vatPercentage_LostFocus(object sender, RoutedEventArgs e)
-                //    {
-
-                //        checkPercentage(vatPercentage.Text);
-
-                //    }
-
-                //    private void checkPercentage(string entered_text)
-                //    {
-                //        decimal result;
-                //        if (!Decimal.TryParse(entered_text, out result))
-                //        {
-                //            MessageBox.Show("Please enter a percentage between 0 and 100!");
-                //            return;
-
-                //        }
-
-                //        decimal enteredAmount = Decimal.Parse(entered_text, NumberStyles.AllowDecimalPoint);
-
-                //        if (enteredAmount <= 0)
-                //        {
-                //            MessageBox.Show("The percentage must be more than 0!");
-                //        }
-                //        else if (enteredAmount > 100)
-                //        {
-                //            MessageBox.Show("The percentage must be less than 100!");
-                //        }
-                //    }
-
-                //    private void termsPercentage_LostFocus(object sender, RoutedEventArgs e)
-                //    {
-                //        checkPercentage(termsPercentage.Text);
-                //    }
-
-
-
-
-                //}
             }
 
 

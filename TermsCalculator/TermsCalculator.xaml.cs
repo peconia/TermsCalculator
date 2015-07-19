@@ -43,6 +43,10 @@ namespace TermsCalculator
                 calculator.updateCalculator(amountBox.Text, termsPercentage.Text, useDiscount, termsAreIncluded );
             }
             calculator.updateFigures();
+            ResultWindow resultWindow = new ResultWindow(calculator);
+            resultWindow.Show();
+            this.Close();
+
         }
 
 

@@ -4,16 +4,16 @@
         Title="Terms Calculator - Results" Height="500" Width="400">
     <Grid Background="Pink">
         <TextBlock HorizontalAlignment="Left" Margin="29,22,0,0" TextWrapping="Wrap" Text="Amount without terms:" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="29,56,0,0" TextWrapping="Wrap" Text="Service Charge Amount:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TermsAmountTextBlock" HorizontalAlignment="Left" Margin="29,56,0,0" TextWrapping="Wrap" Text="Service Charge Amount:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="29,92,0,0" TextWrapping="Wrap" Text="Total amount with terms:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="29,126,0,0" TextWrapping="Wrap" Text="VAT amount:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="29,160,0,0" TextWrapping="Wrap" Text="Total amount with VAT:" VerticalAlignment="Top"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="156,231,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="196,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="196,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="196,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="196,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="196,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
+        <TextBox x:Name="amountWithoutTerms" HorizontalAlignment="Left" Height="23" Margin="196,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
+        <TextBox x:Name="TermsAmountTextBox" HorizontalAlignment="Left" Height="23" Margin="196,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
+        <TextBox x:Name="totalWithTermsTextBox" HorizontalAlignment="Left" Height="23" Margin="196,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
+        <TextBox x:Name="vatAmountTextBox" HorizontalAlignment="Left" Height="23" Margin="196,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
+        <TextBox x:Name="totalTextBox" HorizontalAlignment="Left" Height="23" Margin="196,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.075,-0.562"/>
 
     </Grid>
 </Window>
